@@ -1,0 +1,16 @@
+{
+  "name": "deal-mvp-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "parcel src/index.html --port 3000 --open"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "whatwg-fetch": "^3.6.2"
+  },
+  "devDependencies": {
+    "parcel": "^2.9.3"
+  }
+}

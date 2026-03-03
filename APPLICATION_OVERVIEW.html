@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duplicate Deal Checker - Application Overview</title>
+    <style>
+        body {
+            font-family: 'Calibri', 'Segoe UI', sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            line-height: 1.6;
+            color: #333;
+        }
+        h1 {
+            color: #1f4788;
+            border-bottom: 3px solid #1f4788;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2e5c9a;
+            margin-top: 25px;
+        }
+        .header-subtitle {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+        .summary-box {
+            background-color: #f0f4f8;
+            padding: 15px;
+            border-left: 4px solid #1f4788;
+            margin: 20px 0;
+        }
+        ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        li {
+            margin: 8px 0;
+        }
+        .tech-stack {
+            background-color: #f9f9f9;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th {
+            background-color: #2e5c9a;
+            color: white;
+            padding: 10px;
+            text-align: left;
+        }
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+            font-size: 12px;
+            color: #666;
+        }
+        .section-box {
+            background-color: #fafafa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Duplicate Deal Checker</h1>
+    <p class="header-subtitle">Application Overview & Documentation</p>
+
+    <div class="summary-box">
+        <strong>Executive Summary:</strong> Duplicate Deal Checker is a web-based application designed to help sales teams manage deal submissions and identify potential duplicate entries. The system uses fingerprinting and scoring algorithms to flag suspicious submissions while maintaining a complete audit trail for administrative review.
+    </div>
+
+    <h2>1. Application Purpose</h2>
+    <p>The integrev system serves as a centralized deal management platform that:</p>
+    <ul>
+        <li><strong>Prevents Duplicate Submissions</strong> - Automatically detects and flags potentially duplicate deals using advanced scoring algorithms</li>
+        <li><strong>Streamlines Deal Management</strong> - Provides an intuitive interface for sales teams to submit, view, and manage deals</li>
+        <li><strong>Enables Admin Review</strong> - Gives administrators tools to review flagged deals and approve/reject submissions</li>
+        <li><strong>Maintains Data Integrity</strong> - Ensures accurate deal records with validation and duplicate checking</li>
+    </ul>
+
+    <h2>2. Why We Need It</h2>
+    <ul>
+        <li><strong>Risk Mitigation</strong> - Duplicate deals can lead to conflicting commitments, revenue confusion, and customer relationship issues</li>
+        <li><strong>Efficiency</strong> - Automated duplicate detection reduces manual review time and human error</li>
+        <li><strong>Data Quality</strong> - Maintains a clean, reliable database of active deals</li>
+        <li><strong>Compliance</strong> - Provides audit trails and approval workflows for deal governance</li>
+        <li><strong>Cost Savings</strong> - Prevents wasted resources on duplicate follow-ups and customer dissatisfaction</li>
+    </ul>
+
+    <h2>3. Backend Architecture</h2>
+    
+    <div class="tech-stack">
+        <strong>Technology Stack:</strong> Node.js, Express.js, PostgreSQL
+    </div>
+
+    <p><strong>Key Components:</strong></p>
+    <ul>
+        <li><strong>API Server</strong> - RESTful endpoints for deal management secured with CORS</li>
+        <li><strong>Database Layer</strong> - PostgreSQL with JSONB support for flexible cost matrices</li>
+        <li><strong>Duplicate Detection Engine</strong> - Fingerprint and scoring utilities for identifying similar deals</li>
+        <li><strong>Admin Workflow</strong> - Flagged deals review and approval/rejection system</li>
+    </ul>
+
+    <p><strong>Core API Endpoints:</strong></p>
+    <ul>
+        <li><code>POST /api/deals/precheck</code> – Compute duplicate score and reasoning</li>
+        <li><code>POST /api/deals/submit</code> – Submit new deal (auto-flagged if score exceeds threshold)</li>
+        <li><code>GET /api/deals</code> – List all deals with pagination</li>
+        <li><code>GET /api/deals/:id</code> – Get individual deal details</li>
+        <li><code>PUT /api/deals/:id</code> – Update deal information</li>
+        <li><code>DELETE /api/deals/:id</code> – Remove deal from system</li>
+        <li><code>GET /api/admin/flagged</code> – List flagged deals requiring review</li>
+        <li><code>POST /api/admin/review</code> – Approve/reject flagged deals with justification</li>
+    </ul>
+
+    <p><strong>Database Schema - Deals Table:</strong></p>
+    <div class="section-box">
+        <ul>
+            <li>Customer Name, Product, Quantity (min/max), Quantity Band</li>
+            <li>Location, Expected Close Date, Deal Owner</li>
+            <li>Fingerprint (for duplicate detection)</li>
+            <li>Status (submitted, flagged, approved, rejected)</li>
+            <li>Cost Matrix (JSONB for flexible pricing data)</li>
+            <li>Justification, Created Timestamp</li>
+        </ul>
+    </div>
+
+    <h2>4. Frontend Architecture</h2>
+    
+    <div class="tech-stack">
+        <strong>Technology Stack:</strong> React, Parcel, HTML5, CSS3
+    </div>
+
+    <p><strong>Key User Interface Views:</strong></p>
+    <ul>
+        <li><strong>Deal Form</strong> – Submit new deals with comprehensive information including product details and cost matrix</li>
+        <li><strong>List View</strong> – Browse, search, filter, and manage submitted deals with full CRUD operations</li>
+        <li><strong>Admin Dashboard</strong> – Review flagged deals, approve/reject submissions, and add justifications</li>
+    </ul>
+
+    <p><strong>Features:</strong></p>
+    <ul>
+        <li>Real-time duplicate scoring preview during form entry</li>
+        <li>Form validation with user-friendly error messages</li>
+        <li>Responsive UI design for desktop and mobile devices</li>
+        <li>Intuitive navigation between different workflow views</li>
+        <li>Cost matrix JSON parsing and validation</li>
+    </ul>
+
+    <h2>5. Application Workflow</h2>
+    <div class="section-box">
+        <ol>
+            <li><strong>Sales User submits a deal</strong> via the Deal Form with customer, product, quantity, location, and cost details</li>
+            <li><strong>System runs precheck analysis</strong> using fingerprinting and scoring algorithms to detect potential duplicates</li>
+            <li><strong>Deal is submitted</strong> with status of either "submitted" or "flagged" based on duplicate score threshold</li>
+            <li><strong>Admin reviews flagged deals</strong> in the Admin Dashboard and examines scoring rationale</li>
+            <li><strong>Admin approves or rejects</strong> each flagged deal with optional justification notes</li>
+            <li><strong>Deal status is updated</strong> accordingly in the system for tracking and reporting</li>
+        </ol>
+    </div>
+
+    <h2>6. Future Enhancement Roadmap</h2>
+    <ul>
+        <li>Role-based access control (Sales User vs Admin profiles)</li>
+        <li>Automated unit and integration tests with CI/CD pipeline</li>
+        <li>Database migrations management</li>
+        <li>Advanced fuzzy-matching algorithms and Postgres trigram indexing</li>
+        <li>Enhanced UI/UX with advanced filtering and reporting</li>
+        <li>CRM system integrations (Salesforce, HubSpot, etc.)</li>
+        <li>Email notifications and deal activity logging</li>
+    </ul>
+
+    <div class="footer">
+        <p><strong>Application Details:</strong></p>
+        <p>Version: 1.0 MVP | Status: Production Ready | Last Updated: February 2026</p>
+    </div>
+</body>
+</html>
