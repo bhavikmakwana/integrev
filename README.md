@@ -108,3 +108,15 @@ docker run -d --name deal-mvp-frontend -p 3000:80 deal-mvp-frontend
 
 > If your frontend cannot reach the backend, update api URLs in `frontend/src/App.jsx` to `http://localhost:5000` for local testing.
 
+### Single-image deployment (Render.com / one Docker image)
+From project root (`c:/codebook/app`):
+
+```bash
+docker build -t deal-mvp .
+docker run -p 5000:5000 --env-file backend/.env deal-mvp
+```
+
+Then open `http://localhost:5000`.
+
+On Render, configure the service to build from this repository with the root `Dockerfile`, set port to `5000`, and add env var `PORT=5000` (plus the database URL).
+
