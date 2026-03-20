@@ -12,7 +12,7 @@ WORKDIR /app/frontend
 COPY frontend/package.json frontend/package-lock.json* ./
 RUN npm install
 COPY frontend .
-RUN npx parcel build src/index.html --dist-dir dist
+RUN chmod +x ./node_modules/.bin/parcel && npm run build
 
 # Stage 3: Final image containing backend and static frontend
 FROM node:20-alpine AS runtime
